@@ -1,18 +1,17 @@
-# Route Planning Project
+# OSM Route Planner
+ OSM Route Planner uses **A\* search algorithm** to find the shortest path between 2 points on a map. Currently, it parses OSM (OpenStreetMap) data where starting point and destination (start_node & end_node) coordinates are provided by the end user. It uses [pugixml](https://pugixml.org/) library to parse OSM data into xml format and uses io2d library (check [P0267 Reference Implementation](https://github.com/cpp-io2d/P0267_RefImpl)) to render a route on map to the display. Render here means transformation of ideal representation into pixels. This project is a part of Udacity C++ Nanodegree and is tested against unit tests (via [GoogleTest Framework](https://github.com/google/googletest)) present in [test](https://github.com/compilepeace/OSM_Route_Planner/blob/main/test/utest_rp_a_star_search.cpp) directory.
 
-This repo contains the starter code for the Route Planning project.
-
-<img src="map.png" width="600" height="450" />
+<img src="map.png" width="600" height="450" /> 
 
 ## Cloning
 
 When cloning this project, be sure to use the `--recurse-submodules` flag. Using HTTPS:
 ```
-git clone https://github.com/udacity/CppND-Route-Planning-Project.git --recurse-submodules
+git clone https://github.com/compilepeace/OSM_Route_Planner --recurse-submodules
 ```
 or with SSH:
 ```
-git clone git@github.com:udacity/CppND-Route-Planning-Project.git --recurse-submodules
+git clone git@github.com:compilepeace/OSM_Route_Planner.git --recurse-submodules
 ```
 
 ## Dependencies for Running Locally
@@ -28,8 +27,29 @@ git clone git@github.com:udacity/CppND-Route-Planning-Project.git --recurse-subm
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 * IO2D
   * Installation instructions for all operating systems can be found [here](https://github.com/cpp-io2d/P0267_RefImpl/blob/master/BUILDING.md)
-  * This library must be built in a place where CMake `find_package` will be able to find it
- 
+  * This library must be built in a place where CMake `find_package` will be able to find it. Installing it system-wide will always do fine.
+
+### Installing  IO2D on Linux
+If you encounter any issues installing io2d library from above mentioned link on Linux (even after installing **io2d's dependencies**), follow the below given steps.
+
+1. `git clone --recurse-submodules https://github.com/cpp-io2d/P0267_RefImpl`
+
+2. Go to `P0267_RefImpl/Samples/svg/external` and 
+delete `svgpp` directory.
+
+3. go to `https://github.com/svgpp/svgpp` and clone this repo in place of the old svgpp folder , i.e in `/P0267_RefImpl/Samples/svg/external/`
+
+4. Add 2 statements inside `thirdparty/P0267_RefImpl/CMakeLists.txt` - `set(IO2D_WITHOUT_SAMPLES 1)` & `set(IO2D_WITHOUT_TESTS 1)` to ensure that we do not build samples and tests.
+
+5. Now, to install io2d library system-wide, open terminal & type
+ ```bash
+cd /P0267_RefImpl 
+mkdir Debug && cd Debug
+cmake -S Debug "-DCMAKE_BUILD_TYPE=Debug" ..
+cmake --build  .
+make 
+sudo make install
+ ```
 
 ## Compiling and Running
 

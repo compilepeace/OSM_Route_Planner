@@ -52,25 +52,27 @@ int main(int argc, const char **argv)
             osm_data = std::move(*data);
     }
     
-    // TODO 1: Declare floats `start_x`, `start_y`, `end_x`, and `end_y` and get
-    // user input for these values using std::cin. Pass the user input to the
-    // RoutePlanner object below in place of 10, 10, 90, 90.
+    // Get start & goal(end) coordinates from user via standard input stream
     float start_x = 0;
     float start_y = 0;
     float end_x = 0;
     float end_y = 0;
+    std::cout << "\nPlease enter the start & end coordinates: ";
     std::cin >> start_x >> start_y >> end_x >> end_y;
-    std::cout << "\nyou entered: ";
-    std::cout << start_x << " " << start_y << " " << end_x << " " << end_y << "\n";
-    std::cout << "\nokay, done !\n";
+    std::cout << "Got coordinates: [";
+    std::cout << start_x << "," << start_y << "] & [" << end_x << "," << end_y << "]\n";
 
     // Build Model.
     RouteModel model{osm_data};
 
     // Create RoutePlanner object and perform A* search.
+    // The coordinate (0, 0) should roughly correspond with the lower left 
+    // corner of the map, and (100, 100) with the upper right.
+    // Sample input values for start & end coordinates may be - 10 10 90 90
     RoutePlanner route_planner{model, start_x, start_y, end_x, end_y};
     route_planner.AStarSearch();
 
+    // Get total distance of shortest path computed by A* search algorithm.
     std::cout << "Distance: " << route_planner.GetDistance() << " meters. \n";
 
     // Render results of search.

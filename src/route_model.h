@@ -19,6 +19,10 @@ class RouteModel : public Model {
         std::vector<Node *> neighbors;
 
         void FindNeighbors();
+        /*
+          returns distance between 'this' node and 'other' node
+          Nodes can be seen as points on a cartesian plane (map)
+        */
         float distance(Node other) const {
             return std::sqrt(std::pow((x - other.x), 2) + std::pow((y - other.y), 2));
         }
