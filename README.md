@@ -1,5 +1,5 @@
 # OSM Route Planner
- OSM Route Planner uses **A\* search algorithm** to find the shortest path between 2 points on a map. Currently, it parses OSM (OpenStreetMap) data where starting point and destination (start_node & end_node) coordinates are provided by the end user. It uses [pugixml](https://pugixml.org/) library to parse OSM data into xml format and uses io2d library (check [P0267 Reference Implementation](https://github.com/cpp-io2d/P0267_RefImpl)) to render a route on map to the display. Render here means transformation of ideal representation into pixels. This project is a part of Udacity C++ Nanodegree and is tested against unit tests (via [GoogleTest Framework](https://github.com/google/googletest)) present in [test](https://github.com/compilepeace/OSM_Route_Planner/blob/main/test/utest_rp_a_star_search.cpp) directory.
+ OSM Route Planner uses **A\* search algorithm** to find the shortest path between 2 points on a map. Currently, it parses OSM (OpenStreetMap) data where starting and destination coordinates (start_node & end_node) are provided by the end user. It uses [pugixml](https://pugixml.org/) library to parse OSM data into xml format and uses io2d library (check [P0267 Reference Implementation](https://github.com/cpp-io2d/P0267_RefImpl)) to render a route on map to the display. **Render** here means transformation of ideal representation into pixels. This project is a part of Udacity C++ Nanodegree and is tested against unit tests (via [GoogleTest Framework](https://github.com/google/googletest)) present in [test](https://github.com/compilepeace/OSM_Route_Planner/blob/main/test/utest_rp_a_star_search.cpp) directory.
 
 <img src="map.png" width="600" height="450" /> 
 
@@ -121,5 +121,9 @@ The testing executable is also placed in the `build` directory. From within `bui
      
 
 * If you are facing errors with --config try to remove -- from the command.
+
+## Software Design
+
+<img src="./rsrc/osm_hld.png">
 
 
